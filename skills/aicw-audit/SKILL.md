@@ -1,11 +1,11 @@
 ---
-name: aicw-technical-audit
+name: aicw-audit
 description: Audit and fix local website access and rendering for search crawlers. Use for robots.txt, sitemap indexes, raw versus rendered HTML, load-speed evidence, and the technical checklist in the AICW book.
 license: AGPL-3.0-only
 compatibility: Requires local file and command access and Node.js 22+ for audit scripts. Browser and WordPress checks need the corresponding local runtime.
 metadata:
   author: aicw-io
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # Audit technical access

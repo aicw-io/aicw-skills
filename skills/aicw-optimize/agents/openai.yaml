@@ -1,0 +1,4 @@
+interface:
+  display_name: "AICW Optimize"
+  short_description: "Audit and improve a website for AI search"
+  default_prompt: "Use $aicw-optimize for the current website project."

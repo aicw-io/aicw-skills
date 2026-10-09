@@ -18,6 +18,20 @@ These locations come from the official documentation for [Claude Code](https://c
 
 For Claude Code, copying `skills/aicw-jsonld` produces `.claude/skills/aicw-jsonld/SKILL.md` in the website project. Start a fresh session and invoke `/aicw-jsonld`. For Codex the corresponding file is `.agents/skills/aicw-jsonld/SKILL.md`. The optional `agents/openai.yaml` supplies OpenAI UI metadata; all working instructions remain in the portable files.
 
+## Updating from version 0.1
+
+Version 0.2 uses shorter names. Run the installer again and select the skills you need. Use `npx skills remove` to remove old installations you no longer need.
+
+| Previous name | Current name |
+| --- | --- |
+| `aicw-website-optimize` | `aicw-optimize` |
+| `aicw-content-intent` | `aicw-content` |
+| `aicw-technical-audit` | `aicw-audit` |
+| `aicw-search-monitoring` | `aicw-monitor` |
+| `aicw-search-submission` | `aicw-submit` |
+
+`aicw-jsonld` keeps its name. Each skill still works independently.
+
 ## Claude Code static review
 
 Reviewed against the official documentation on 2026-10-09, without executing Claude Code. The six skills use supported frontmatter fields: `name`, `description`, `license`, `compatibility`, and `metadata`. Runtime requirements also appear in the instructions because Claude accepts `compatibility` without enforcing it. They require no Claude-specific variables, hooks, inline shell expansion, model override, or tool permission grants. See the [frontmatter reference](https://code.claude.com/docs/en/skills#frontmatter-reference).

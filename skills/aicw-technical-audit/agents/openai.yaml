@@ -1,4 +1,0 @@
-interface:
-  display_name: "AICW Technical Audit"
-  short_description: "Local technical audit with AICW guidance"
-  default_prompt: "Use $aicw-technical-audit for the current website project."

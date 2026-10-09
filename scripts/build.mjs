@@ -67,7 +67,14 @@ for (const name of skills) {
   await writeFile(path.join(skill, 'SKILL.md'), `---\n${stringify(meta, { lineWidth: 0 })}---\n${source.slice(front[0].length)}`);
   await mkdir(path.join(skill, 'agents'), { recursive: true });
   const title = 'AICW ' + name.slice(5).split('-').map(x => x === 'jsonld' ? 'JSON-LD' : x[0].toUpperCase() + x.slice(1)).join(' ');
-  const short = `Local ${name.slice(5).replaceAll('-', ' ')} with AICW guidance`;
+  const short = {
+    'aicw-optimize': 'Audit and improve a website for AI search',
+    'aicw-content': 'Find missing answers and improve content intent',
+    'aicw-jsonld': 'Inspect and repair page JSON-LD markup',
+    'aicw-audit': 'Audit crawl access, sitemaps, rendering, and speed',
+    'aicw-monitor': 'Track AI search observations and compare reports',
+    'aicw-submit': 'Guide Google, Bing, and Brave search submissions',
+  }[name];
   await writeFile(path.join(skill, 'agents/openai.yaml'), `interface:\n  display_name: ${JSON.stringify(title)}\n  short_description: ${JSON.stringify(short)}\n  default_prompt: ${JSON.stringify(`Use $${name} for the current website project.`)}\n`);
 }
 } finally { await rm(staging, { recursive: true, force: true }); }

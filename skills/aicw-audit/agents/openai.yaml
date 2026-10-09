@@ -1,0 +1,4 @@
+interface:
+  display_name: "AICW Audit"
+  short_description: "Audit crawl access, sitemaps, rendering, and speed"
+  default_prompt: "Use $aicw-audit for the current website project."

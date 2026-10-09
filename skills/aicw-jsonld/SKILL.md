@@ -5,7 +5,7 @@ license: AGPL-3.0-only
 compatibility: Requires local file and command access and Node.js 22+ for audit scripts. Browser and WordPress checks need the corresponding local runtime.
 metadata:
   author: aicw-io
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # Inspect and repair page JSON-LD

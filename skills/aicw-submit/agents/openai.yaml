@@ -1,0 +1,4 @@
+interface:
+  display_name: "AICW Submit"
+  short_description: "Guide Google, Bing, and Brave search submissions"
+  default_prompt: "Use $aicw-submit for the current website project."

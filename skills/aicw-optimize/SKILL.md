@@ -1,11 +1,11 @@
 ---
-name: aicw-website-optimize
+name: aicw-optimize
 description: Audit and improve a local website for AI search using the AICW book. Use for a whole-site optimization across content intent, JSON-LD, crawler access, rendering, and measurement. Supports HTML, Astro, WordPress, and other local projects.
 license: AGPL-3.0-only
 compatibility: Requires local file and command access and Node.js 22+ for audit scripts. Browser and WordPress checks need the corresponding local runtime.
 metadata:
   author: aicw-io
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # Optimize a website for AI search

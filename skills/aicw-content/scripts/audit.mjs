@@ -40,7 +40,7 @@ var init_package = __esm({
   "package.json"() {
     package_default = {
       name: "aicw-skills",
-      version: "0.1.0",
+      version: "0.2.0",
       private: true,
       description: "Local website optimization skills accompanying the AI Search Engine Optimization Guide",
       type: "module",

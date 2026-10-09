@@ -1,11 +1,11 @@
 ---
-name: aicw-search-submission
+name: aicw-submit
 description: Prepare and guide manual website submissions to Google Search Console, Bing Webmaster Tools and IndexNow, and Brave Search. Use for sitemap submission, changed-URL notifications, ownership prerequisites, submission records.
 license: AGPL-3.0-only
 compatibility: Requires local file and command access and Node.js 22+ for audit scripts. Browser and WordPress checks need the corresponding local runtime.
 metadata:
   author: aicw-io
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # Prepare the book’s search engine submissions

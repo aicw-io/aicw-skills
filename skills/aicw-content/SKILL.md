@@ -1,11 +1,11 @@
 ---
-name: aicw-content-intent
+name: aicw-content
 description: Audit and improve page text for user intent and AI search understanding. Use for unanswered questions, weak task coverage, titles, headings, semantic context, conversational queries, FAQs, and evidence-based rewrites in a local website.
 license: AGPL-3.0-only
 compatibility: Requires local file and command access and Node.js 22+ for audit scripts. Browser and WordPress checks need the corresponding local runtime.
 metadata:
   author: aicw-io
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # Match content to the reader's task

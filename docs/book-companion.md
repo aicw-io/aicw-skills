@@ -14,27 +14,27 @@ Open the website project in that agent. State whether you want an audit or chang
 
 For a directly maintained HTML site:
 
-> Use aicw-website-optimize on this HTML website. Improve the important pages for AI search. Check intent, JSON-LD, robots rules, sitemaps, and rendering. Keep the current design and factual claims. Verify the local output.
+> Use aicw-optimize on this HTML website. Improve the important pages for AI search. Check intent, JSON-LD, robots rules, sitemaps, and rendering. Keep the current design and factual claims. Verify the local output.
 
 For an Astro site:
 
-> Use aicw-jsonld and aicw-content-intent on the pricing page and three product guides. Fix their source files, run the existing build, and compare the output with the original audit.
+> Use aicw-jsonld and aicw-content on the pricing page and three product guides. Fix their source files, run the existing build, and compare the output with the original audit.
 
 For a local WordPress site:
 
-> Use aicw-website-optimize on this local WordPress installation. Inspect the active SEO plugin first. Back up the local database before updating posts or configuration. Verify the rendered pages and explain restoration.
+> Use aicw-optimize on this local WordPress installation. Inspect the active SEO plugin first. Back up the local database before updating posts or configuration. Verify the rendered pages and explain restoration.
 
 For an audit only:
 
-> Use aicw-technical-audit against this local preview. Show evidence, priorities, and missing runtime checks. Do not edit website files or the database.
+> Use aicw-audit against this local preview. Show evidence, priorities, and missing runtime checks. Do not edit website files or the database.
 
 For submission preparation:
 
-> Use aicw-search-submission to prepare Google Search Console sitemap steps, Brave submission, and a Bing IndexNow payload for these changed public URLs. Keep the work local and do not send submissions.
+> Use aicw-submit to prepare Google Search Console sitemap steps, Brave submission, and a Bing IndexNow payload for these changed public URLs. Keep the work local and do not send submissions.
 
 For measurement:
 
-> Use aicw-search-monitoring to compare these before and after reports and my recorded AI search observations. Separate technical improvements, mentions, citations, traffic, and conversions.
+> Use aicw-monitor to compare these before and after reports and my recorded AI search observations. Separate technical improvements, mentions, citations, traffic, and conversions.
 
 ## Read the result
 

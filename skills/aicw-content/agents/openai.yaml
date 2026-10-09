@@ -1,0 +1,4 @@
+interface:
+  display_name: "AICW Content"
+  short_description: "Find missing answers and improve content intent"
+  default_prompt: "Use $aicw-content for the current website project."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "AICW Search Monitoring"
-  short_description: "Local search monitoring with AICW guidance"
-  default_prompt: "Use $aicw-search-monitoring for the current website project."
