@@ -6,6 +6,8 @@ Validated on 2026-10-09 with Node.js 22.22.3. Core users need Node.js 22 or newe
 
 After shortening the skill names, all 34 core tests and the HTML, Astro, browser, and WordPress integration scenarios passed again. Build consistency, portable package checks, and the Agent Skills reference validator passed for all six skills. The installer discovered all six renamed skills from the release candidate. The live agent evaluations recorded below were completed before this rename and were not repeated for version 0.2.
 
+The [version 0.2 CI run](https://github.com/aicw-io/aicw-skills/actions/runs/37962712799) passed all eight jobs for commit `3767c037c0d9d78ba0797f19702ffd8ba0b2f622`. A terminal smoke test of `npx skills add aicw-io/aicw-skills` displayed all six new names in the skill chooser. The test stopped at that prompt without installing. A separate test in an agent context installed all six into an isolated project, which was then removed. The installer automatically skips prompts when it detects an agent; the README's instructions are for the user's terminal.
+
 ## Automated checks
 
 The suite contains 34 tests. It covers object, array, nested, and multi-type JSON-LD; malformed blocks; connected and unresolved references; conflicting definitions; media field corrections; FAQ visibility; hidden headings; attribute order; and decorative image alternatives.
