@@ -1,0 +1,4 @@
+interface:
+  display_name: "AICW JSON-LD"
+  short_description: "Local jsonld with AICW guidance"
+  default_prompt: "Use $aicw-jsonld for the current website project."

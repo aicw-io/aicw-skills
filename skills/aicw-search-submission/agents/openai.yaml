@@ -1,0 +1,4 @@
+interface:
+  display_name: "AICW Search Submission"
+  short_description: "Local search submission with AICW guidance"
+  default_prompt: "Use $aicw-search-submission for the current website project."

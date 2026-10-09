@@ -1,0 +1,4 @@
+interface:
+  display_name: "AICW Content Intent"
+  short_description: "Local content intent with AICW guidance"
+  default_prompt: "Use $aicw-content-intent for the current website project."

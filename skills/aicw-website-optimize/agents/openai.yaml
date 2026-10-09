@@ -1,0 +1,4 @@
+interface:
+  display_name: "AICW Website Optimize"
+  short_description: "Local website optimize with AICW guidance"
+  default_prompt: "Use $aicw-website-optimize for the current website project."
