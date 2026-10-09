@@ -17,12 +17,12 @@ const groups = [
     ['Use conversational language and natural questions', 'Read the actual wording and answers; question marks alone are not evidence.'],
     ['Include relevant related terms and entities', 'Explain how the related concepts clarify the answer; do not count keywords.'],
     ['Organize useful questions and answers', 'Match headings to the reader’s questions and inspect the answers underneath.'],
-    ['Review FAQ or PAA coverage', 'Consider both a general FAQ page and embedded FAQs; record useful questions or explain why none fit.'],
+    ['Implement FAQ or PAA sections', 'Assess general and embedded FAQs; implement useful answers, or record a gap or explicit applicability decision.'],
   ]],
   [2, 7, 64, [
     ['Choose primary and secondary schema types', 'Match types to real page entities and explain the selection.'],
     ['Implement JSON-LD through the existing source or CMS', 'Locate the generator and inspect its emitted HTML.'],
-    ['Validate the emitted JSON-LD', 'Run local checks; record full vocabulary and provider validation separately.'],
+    ['Validate the emitted JSON-LD', 'Record Schema Markup Validator or Google Rich Results Test evidence; local checks alone leave this item incomplete.'],
     ['Monitor indexing after structured-data changes', 'Record dated search-console or analytics observations, or mark evidence unavailable.'],
   ]],
   [3, 7, 71, [

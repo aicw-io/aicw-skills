@@ -36,6 +36,8 @@ For media, use plain text for `transcript`. Clip `startOffset` and `endOffset` u
 
 Update the existing generator or CMS configuration. Use safe JSON serialization, then read the final script contents. Compare before and after and repeat the relevant checks. On localhost, preserve the intended public canonical and entity identities.
 
-When full vocabulary or provider validation is needed, consult [Schema.org](https://schema.org/), [Schema Markup Validator](https://validator.schema.org/), and the relevant [Google structured-data documentation](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data). Uploading unpublished page content to an external validator is a separate external action. A local parser passing is not a claim that either service ran.
+Checklist 2 explicitly calls for [Schema Markup Validator](https://validator.schema.org/) or [Google Rich Results Test](https://search.google.com/test/rich-results) (pages 61 and 64). Run an appropriate validator when available and within the user’s disclosure scope, or record its dated result if supplied. If neither ran, leave this part of C2.3 incomplete and provide the validation step. A local parser does not replace it.
+
+Use [Schema.org](https://schema.org/) for vocabulary and [Google’s documentation](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data) for supported features. Google’s test does not cover all Schema.org types. Uploading unpublished content requires authorization for that disclosure.
 
 Complete the four Checklist 2 rows in [the review worksheet](book-checklist.md). Do not mark monitoring complete merely because markup parses.

@@ -1,8 +1,8 @@
 {
   "name": "aicw-skills",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
-  "description": "Local website optimization skills accompanying the AI Search Engine Optimization Guide",
+  "description": "Website optimization skills based on the AI Search Engine Optimization Guide by Eugene Mironichev",
   "type": "module",
   "license": "AGPL-3.0-only",
   "engines": {

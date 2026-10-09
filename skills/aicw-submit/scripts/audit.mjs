@@ -40,9 +40,9 @@ var init_package = __esm({
   "package.json"() {
     package_default = {
       name: "aicw-skills",
-      version: "0.2.0",
+      version: "0.3.0",
       private: true,
-      description: "Local website optimization skills accompanying the AI Search Engine Optimization Guide",
+      description: "Website optimization skills based on the AI Search Engine Optimization Guide by Eugene Mironichev",
       type: "module",
       license: "AGPL-3.0-only",
       engines: {
@@ -126,12 +126,12 @@ var init_book = __esm({
         ["Use conversational language and natural questions", "Read the actual wording and answers; question marks alone are not evidence."],
         ["Include relevant related terms and entities", "Explain how the related concepts clarify the answer; do not count keywords."],
         ["Organize useful questions and answers", "Match headings to the reader\u2019s questions and inspect the answers underneath."],
-        ["Review FAQ or PAA coverage", "Consider both a general FAQ page and embedded FAQs; record useful questions or explain why none fit."]
+        ["Implement FAQ or PAA sections", "Assess general and embedded FAQs; implement useful answers, or record a gap or explicit applicability decision."]
       ]],
       [2, 7, 64, [
         ["Choose primary and secondary schema types", "Match types to real page entities and explain the selection."],
         ["Implement JSON-LD through the existing source or CMS", "Locate the generator and inspect its emitted HTML."],
-        ["Validate the emitted JSON-LD", "Run local checks; record full vocabulary and provider validation separately."],
+        ["Validate the emitted JSON-LD", "Record Schema Markup Validator or Google Rich Results Test evidence; local checks alone leave this item incomplete."],
         ["Monitor indexing after structured-data changes", "Record dated search-console or analytics observations, or mark evidence unavailable."]
       ]],
       [3, 7, 71, [
@@ -13103,7 +13103,7 @@ function normalize(text) {
 function checkPage(page) {
   const out = checkJsonLD(page);
   const emit = (rule, status, severity, evidence, recommendation, category = "technical") => out.push(finding(rule, category, status, severity, page.source, evidence, recommendation));
-  if (!page.text) emit("html.empty", "fail", "error", "No main text found in the response HTML.", "Inspect the local runtime and render essential content in the server response.");
+  if (!page.text) emit("html.empty", "fail", "error", "No main text found in the response HTML.", "Inspect the page response and render essential content in the server response.");
   for (const meta of page.meta.filter((m) => /^(robots|googlebot|bingbot)$/i.test(m.name))) {
     if (/\b(noindex|none|nosnippet)\b/i.test(meta.content)) emit("html.robots", "review", "warning", `${meta.name}: ${meta.content}`, "Check whether the restriction is intentional, especially on local staging sites. Keep deliberate restrictions.");
   }
@@ -13218,7 +13218,7 @@ async function fetchCapture(input, { origin, timeout = 1e4, retries = 1, maxByte
       let url = new URL(input), response;
       for (let hop = 0; hop < 6; hop++) {
         if (url.origin !== origin) throw new Error(`Cross-origin request blocked: ${url.origin}`);
-        response = await fetcher(url, { redirect: "manual", signal: controller.signal, headers: { "User-Agent": `AICW-Skills/${VERSION} (local website audit)` } });
+        response = await fetcher(url, { redirect: "manual", signal: controller.signal, headers: { "User-Agent": `AICW-Skills/${VERSION} (website audit)` } });
         if ([301, 302, 303, 307, 308].includes(response.status)) {
           await response.body?.cancel();
           if (!response.headers.get("location")) throw new Error("Redirect has no Location header.");
@@ -13415,7 +13415,7 @@ async function audit(options = {}) {
   const maxPages = options.maxPages ?? 200;
   const project = await discover(options.root, options.htmlRoot);
   const target = options.url ? await checkTarget(options.url, options.online) : null;
-  if (!target && !project.htmlRoot) throw new Error("No rendered HTML found. Build the project, set --html-root, or supply a local --url. WordPress PHP files are not rendered HTML.");
+  if (!target && !project.htmlRoot) throw new Error("No rendered HTML found. Build the project, set --html-root, or supply a preview --url or a public --url with --online. WordPress PHP files are not rendered HTML.");
   const publicOrigin = options.publicOrigin ? new URL(options.publicOrigin).origin : null;
   const identity = publicOrigin ?? target?.origin ?? "https://local-audit.invalid";
   const report = {
@@ -13430,7 +13430,7 @@ async function audit(options = {}) {
     coverage: { maxPages, inspected: 0, truncated: false, sitemapLimit: 30 },
     pages: [],
     findings: [],
-    limitations: ["Local checks do not establish production access, indexing, AI citations, or ranking.", "Intent, factual accuracy, schema suitability, and complete Schema.org validation require agent review."]
+    limitations: ["File and preview checks do not establish production access. Public HTTP checks observe only the selected responses; they do not prove search indexing, AI citations, or ranking.", "Intent, factual accuracy, and schema suitability require agent review. Complete Checklist 2 validation needs Schema Markup Validator or Google Rich Results Test evidence."]
   };
   const add = (rule, status, severity, source, evidence, recommendation) => report.findings.push(finding(rule, "technical", status, severity, source, evidence, recommendation));
   const allowedOrigins = /* @__PURE__ */ new Set([identity, ...target ? [target.origin] : []]);
@@ -13480,7 +13480,7 @@ async function audit(options = {}) {
         else add("sitemap.external", "skipped", "info", s, "Sitemap is outside the configured origin.", "Audit this sitemap separately if it belongs to this site.");
       }
     } else if (robot.status === 404) add("robots.missing", "review", "info", "/robots.txt", "No robots.txt found.", "Absence gives no robots exclusion rules. It does not establish access or indexing.");
-    else add("robots.response", "unknown", "warning", "/robots.txt", `HTTP ${robot.status}; response is not usable robots text.`, "Inspect the local route or server response.");
+    else add("robots.response", "unknown", "warning", "/robots.txt", `HTTP ${robot.status}; response is not usable robots text.`, "Inspect the selected route or server response.");
   } catch (e) {
     add("robots.fetch", "unknown", "warning", "/robots.txt", e.message, "Resolve the fetch failure and repeat the audit.");
   }
@@ -13497,7 +13497,7 @@ async function audit(options = {}) {
         continue;
       }
       const sitemap = parseSitemap(data.text);
-      add("sitemap.parse", "pass", "info", route, `${sitemap.entries.length} entries in ${sitemap.index ? "index" : "urlset"}.`, "Compare listed URLs with the pages intended for discovery and check their local routes.");
+      add("sitemap.parse", "pass", "info", route, `${sitemap.entries.length} entries in ${sitemap.index ? "index" : "urlset"}.`, "Compare listed URLs with the pages intended for discovery and check their routes on the selected target.");
       for (const entry of sitemap.entries) {
         const mapped = internalRoute(entry.url);
         if (!mapped) {
@@ -13542,7 +13542,7 @@ async function audit(options = {}) {
       page.route = route;
       if (target) {
         page.response = { status: result.status, finalURL: result.url, ttfbMs: result.ttfbMs, contentType: result.headers["content-type"], xRobotsTag: result.headers["x-robots-tag"] };
-        add("http.timing", "review", "info", page.source, `One response: ${result.ttfbMs} ms to headers; ${result.bytes} bytes.`, "Local timings are diagnostic only. Use repeated production measurements for speed or Core Web Vitals conclusions.");
+        add("http.timing", "review", "info", page.source, `One response: ${result.ttfbMs} ms to headers; ${result.bytes} bytes.`, "Single-request timings are diagnostic only. Use repeated production measurements for speed or Core Web Vitals conclusions.");
         if (result.headers["x-robots-tag"]) add("http.robots", "review", "warning", page.source, result.headers["x-robots-tag"], "Preserve intentional preview restrictions and inspect production configuration separately.");
       }
       report.pages.push(page);
@@ -13553,16 +13553,16 @@ async function audit(options = {}) {
       }
     } catch (e) {
       inspected.set(route, null);
-      add("page.fetch", "unknown", "warning", route, e.message, "Resolve the local runtime or fetch failure.");
+      add("page.fetch", "unknown", "warning", route, e.message, "Resolve the runtime or fetch failure.");
     }
   }
   if (inspected.size < queue.length) report.coverage.truncated = true;
   report.coverage.inspected = report.pages.length;
   report.coverage.discovered = queued.size;
   if (report.robots) report.findings.push(...checkRobots(report.robots.text, identity, report.pages.map((p) => p.url)).findings);
-  if (!target) add("http.unavailable", "skipped", "info", project.htmlRoot, "File audit has no HTTP headers or server status evidence.", "Supply a local preview URL to inspect HTTP behavior.");
+  if (!target) add("http.unavailable", "skipped", "info", project.htmlRoot, "File audit has no HTTP headers or server status evidence.", "Supply the selected preview or public URL to inspect HTTP behavior.");
   if (options.browser) {
-    if (!target) add("rendering.unavailable", "skipped", "info", identity, "Browser comparison requires a local preview URL.", "Run the existing local preview and supply --url.");
+    if (!target) add("rendering.unavailable", "skipped", "info", identity, "Browser comparison requires a preview or public URL.", "Supply --url for the selected target, with --online for a public URL.");
     else {
       const { compareBrowser: compareBrowser2 } = await Promise.resolve().then(() => (init_browser(), browser_exports));
       report.findings.push(...await compareBrowser2(report.pages, target, options));
@@ -13582,7 +13582,7 @@ function md(value) {
 }
 function markdownReport(report) {
   const lines = [
-    "# AICW local website audit",
+    "# AICW website audit",
     "",
     `Based on ${BOOK_SOURCE.author}\u2019s [${BOOK_SOURCE.title}](${BOOK_SOURCE.url}), full 84-page edition.`,
     "",
@@ -13656,15 +13656,15 @@ function prepareSubmission({ origin, urls, key, sitemap }) {
   if (all.some((url) => new URL(url).origin !== site.origin)) throw new Error("Every changed URL must use the configured website origin.");
   key ??= randomBytes(16).toString("hex");
   if (!/^[a-zA-Z0-9-]{8,128}$/.test(key)) throw new Error("IndexNow key must have 8-128 letters, digits, or hyphens.");
-  const sitemapURL = sitemap ? publicURL(sitemap) : new URL("/sitemap.xml", site);
-  if (sitemapURL.origin !== site.origin) throw new Error("The sitemap must use the configured origin.");
+  const sitemapURL = sitemap ? publicURL(sitemap) : null;
+  if (sitemapURL && sitemapURL.origin !== site.origin) throw new Error("The sitemap must use the configured origin.");
   return {
     version: 1,
     book: BOOK_SOURCE,
     bookPages: "66-70",
     status: "prepared-not-submitted",
     origin: site.origin,
-    sitemap: sitemapURL.href,
+    sitemap: sitemapURL?.href ?? null,
     keyFile: { name: `${key}.txt`, content: key },
     indexnow: { endpoint: "https://api.indexnow.org/indexnow", payload: { host: site.hostname, key, keyLocation: new URL(`/${key}.txt`, site).href, urlList: all } },
     steps: [
@@ -13686,7 +13686,7 @@ var help = `AICW Skills ${VERSION} (Node.js 22+)
 Based on ${BOOK_SOURCE.author}'s ${BOOK_SOURCE.title}
 ${BOOK_SOURCE.url}
 
-audit --root DIR [--html-root DIR] [--url http://localhost:PORT]
+audit [--root DIR] [--html-root DIR] [--url URL]
       [--public-origin https://site.tld] [--pages /,/pricing/]
       [--max-pages 200] [--output DIR] [--online]
       [--browser] [--browser-module RUNTIME_DIR] [--browser-executable FILE]
@@ -13699,6 +13699,7 @@ presence --origin https://site.tld --online
 Audit is read-only except for an explicitly requested report directory.
 Without --output, JSON goes to stdout. No command edits website sources.
 --public-origin maps URL identity without enabling any network request.
+Use --root for files or --url for HTTP. A URL-only audit needs no local project.
 --online permits the chosen external target. Crawl redirects stay on-origin.
 --browser-module is a directory containing node_modules/puppeteer-core.
 prepare-submission creates files only. There is no submit command.

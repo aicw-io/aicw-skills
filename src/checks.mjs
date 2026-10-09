@@ -83,7 +83,7 @@ function normalize(text) { return compact(String(text).replace(/<[^>]*>/g, ' '))
 export function checkPage(page) {
   const out = checkJsonLD(page);
   const emit = (rule, status, severity, evidence, recommendation, category = 'technical') => out.push(finding(rule, category, status, severity, page.source, evidence, recommendation));
-  if (!page.text) emit('html.empty', 'fail', 'error', 'No main text found in the response HTML.', 'Inspect the local runtime and render essential content in the server response.');
+  if (!page.text) emit('html.empty', 'fail', 'error', 'No main text found in the response HTML.', 'Inspect the page response and render essential content in the server response.');
   for (const meta of page.meta.filter(m => /^(robots|googlebot|bingbot)$/i.test(m.name))) {
     if (/\b(noindex|none|nosnippet)\b/i.test(meta.content)) emit('html.robots', 'review', 'warning', `${meta.name}: ${meta.content}`, 'Check whether the restriction is intentional, especially on local staging sites. Keep deliberate restrictions.');
   }

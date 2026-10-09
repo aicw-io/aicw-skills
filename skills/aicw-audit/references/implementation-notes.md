@@ -19,7 +19,7 @@ Checked on 2026-10-09. These corrections preserve the book's practical intent wh
 
 ## How to label engineering details
 
-Local HTML, Astro, and WordPress workflows implement the user's requested environments. JSON parsing, graph paths, identifier checks, retries, file boundaries, and robots precedence are engineering methods for inspecting the book's topics; they are not extra ranking factors. The local browser comparison uses a small word-difference threshold to select review candidates, not to grade content quality or prove crawler behavior. Raw headers and meta restrictions are supporting access diagnostics, not separate book recommendations.
+Local file, URL, and connected CMS workflows implement the user’s requested access. Selecting a target, asking for a missing address, using connector revisions, and checking saved output are toolkit execution instructions, not the author’s optimization advice. JSON parsing, graph paths, identifier checks, retries, file boundaries, and robots precedence are engineering methods for inspecting the book's topics; they are not extra ranking factors. The local browser comparison uses a small word-difference threshold to select review candidates, not to grade content quality or prove crawler behavior. Raw headers and meta restrictions are supporting access diagnostics, not separate book recommendations.
 
 The book discusses C2PA media provenance on page 63. Preserve truthful provenance when present and report unknown metadata as unknown. Do not invent provenance or claim a required C2PA ranking signal. The bundled audit does not inspect C2PA manifests.
 

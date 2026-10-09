@@ -4,9 +4,11 @@ Book basis: Chapter 7, pages 66-70. The book supplies the engine choices; the st
 
 ## Prepare the website
 
-Identify the public origin and the intended canonical URLs. Check the deployed sitemap and whether pages are intended for indexing. Make sure that private, staging, redirected, or duplicate URLs are not submitted accidentally. IndexNow also accepts notifications for deliberately deleted URLs.
+First resolve the selected website. If its public address is missing or ambiguous, ask for it and the URLs or sitemap to submit. Do not substitute the book URL, a sample domain, a preview address, or the first account property. Reuse an explicit address already supplied.
 
-If the website is only local, prepare files and instructions. External engines cannot index localhost. Do not publish the site as a side effect of preparing a submission.
+Match the public origin, intended canonical URLs, and selected Search Console or Bing property. Identify the actual sitemap from site evidence or the user; do not assume `/sitemap.xml` exists. Check the deployed sitemap and whether pages are intended for indexing. Make sure that private, staging, redirected, or duplicate URLs are not submitted accidentally. IndexNow also accepts notifications for deliberately deleted URLs.
+
+If the website has no public address yet, prepare a checklist. Wait for the intended public address before generating host-specific payloads or key files. External engines cannot index localhost. Do not publish the site as a side effect of preparing a submission.
 
 Create a submission log with service, website property, URL or sitemap, preparation date, submission date, response, verification evidence, follow-up date, and status. Use prepared, submitted, pending, rejected, or confirmed indexed. Keep credentials out of the log.
 

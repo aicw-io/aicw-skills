@@ -1,6 +1,18 @@
 # Work with the website's existing platform
 
-The audit reads output. The agent maps findings back to source files or local CMS records. It does not assume that a common folder layout fits every site.
+These are execution methods, not new optimization principles. The same book checklists apply to any website. Map findings to its authoritative files or CMS records using the available access. The platform examples below are not a supported-platform limit.
+
+## Public URL or connected CMS
+
+For a public URL audit, inspect the selected site with available web tools or the helper’s `--url ... --online` mode. No local checkout is required. Keep requests within the selected scope. Record missing raw HTML, response headers, browser rendering, or account access as coverage limits.
+
+For a user-selected third-party connector, inspect its actual tools and confirm the site ID, domain, environment, and supported fields. The skills do not include a connector or assume one is installed. A content connector might expose posts but not SEO plugins, templates, robots rules, or server configuration. Propose changes for anything it cannot edit.
+
+Before an authorized edit, read the current record and retain the affected fields or a revision reference for recovery. Use the connector’s documented update operation. Preserve unrelated fields, record IDs, language, links, and publication state. Check for intervening changes before saving. Do not replace a whole record when a field update is supported.
+
+Read back the result, then inspect the preview or public page when available. A successful content save does not prove JSON-LD reached the HTML. Follow the requested draft or live-edit scope, and report it accurately. Credentials belong in the connector’s normal authentication flow, not in prompts, report files, or URL arguments.
+
+For connected WordPress, use those same steps and the exposed WordPress APIs. Inspect existing SEO output before proposing plugin changes. Do not assume a post editor can update theme files, plugins, or the database.
 
 ## HTML
 
@@ -28,9 +40,9 @@ const json = JSON.stringify(data).replace(/</g, '\\u003c');
 
 Run the existing build, then inspect its output directory with `--html-root`. For server-rendered routes, use a running local preview. Do not infer a route from a source filename when the routing configuration says otherwise.
 
-## WordPress
+## Local WordPress
 
-Confirm that the installation and database are local before any write. Inspect environment documentation, `home`, `siteurl`, and the database connection target without printing credentials. A local code checkout can still point to a remote database.
+For this local procedure, confirm that the installation and database are local before any write. For a remote site, use the connected CMS procedure above. Inspect environment documentation, `home`, `siteurl`, and the database connection target without printing credentials. A local code checkout can still point to a remote database.
 
 Use a local runtime and supported WordPress APIs or WP-CLI. Inspect the active theme and SEO plugins first. Extend the existing schema generator through its documented configuration or filters. Do not edit WordPress core, a vendor plugin, or serialized database values with text replacement.
 
@@ -50,4 +62,4 @@ Official references: [WP-CLI commands](https://developer.wordpress.org/cli/comma
 
 ## Other frameworks
 
-Follow the repository's own build and content conventions. Audit rendered HTML or the supplied local URL. Source inspection can identify likely issues, but dynamic output needs runtime evidence. Do not convert the project to another framework.
+Follow the repository's own build and content conventions. Audit rendered HTML or the selected preview or public URL. Source inspection can identify likely issues, but dynamic output needs runtime evidence. Do not convert the project to another framework.

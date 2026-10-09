@@ -1,4 +1,4 @@
 interface:
   display_name: "AICW Monitor"
   short_description: "Track AI search observations and compare reports"
-  default_prompt: "Use $aicw-monitor for the current website project."
+  default_prompt: "Use $aicw-monitor for my selected website. Ask which website if it is unclear."

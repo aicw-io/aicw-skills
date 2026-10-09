@@ -4,6 +4,15 @@ import { inspectHTML } from '../src/html.mjs';
 import { checkJsonLD, checkPage, checkRobots, parseSitemap } from '../src/checks.mjs';
 import { prepareSubmission } from '../src/submission.mjs';
 
+test('submission preparation leaves an unknown sitemap unset and validates a supplied one', () => {
+  const input = { origin: 'https://aicw.io', urls: ['https://aicw.io/guide/'], key: 'existing-key-123' };
+  assert.equal(prepareSubmission(input).sitemap, null);
+  assert.equal(prepareSubmission({ ...input, sitemap: 'https://aicw.io/wp-sitemap.xml' }).sitemap, 'https://aicw.io/wp-sitemap.xml');
+  assert.throws(() => prepareSubmission({ ...input, sitemap: 'https://elsewhere.tld/sitemap.xml' }), /configured origin/);
+  assert.throws(() => prepareSubmission({ ...input, origin: undefined }));
+  assert.throws(() => prepareSubmission({ ...input, origin: 'https://example.com' }), /real public hostname/);
+});
+
 function page(data, body = '<h1>Guide</h1><p>Useful factual text.</p>') {
   const p = inspectHTML(`<html lang="en"><head><title>Guide</title><meta content="Useful guide" name="description"></head><body><main>${body}</main>${data.map(x => `<script type="application/ld+json">${typeof x === 'string' ? x : JSON.stringify(x)}</script>`).join('')}</body></html>`, 'index.html');
   p.url = 'https://aicw.io/guide/'; return p;

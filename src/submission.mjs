@@ -17,10 +17,10 @@ export function prepareSubmission({ origin, urls, key, sitemap }) {
   if (all.some(url => new URL(url).origin !== site.origin)) throw new Error('Every changed URL must use the configured website origin.');
   key ??= randomBytes(16).toString('hex');
   if (!/^[a-zA-Z0-9-]{8,128}$/.test(key)) throw new Error('IndexNow key must have 8-128 letters, digits, or hyphens.');
-  const sitemapURL = sitemap ? publicURL(sitemap) : new URL('/sitemap.xml', site);
-  if (sitemapURL.origin !== site.origin) throw new Error('The sitemap must use the configured origin.');
+  const sitemapURL = sitemap ? publicURL(sitemap) : null;
+  if (sitemapURL && sitemapURL.origin !== site.origin) throw new Error('The sitemap must use the configured origin.');
   return {
-    version: 1, book: BOOK_SOURCE, bookPages: '66-70', status: 'prepared-not-submitted', origin: site.origin, sitemap: sitemapURL.href,
+    version: 1, book: BOOK_SOURCE, bookPages: '66-70', status: 'prepared-not-submitted', origin: site.origin, sitemap: sitemapURL?.href ?? null,
     keyFile: { name: `${key}.txt`, content: key },
     indexnow: { endpoint: 'https://api.indexnow.org/indexnow', payload: { host: site.hostname, key, keyLocation: new URL(`/${key}.txt`, site).href, urlList: all } },
     steps: [

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, writeFile, readFile, symlink, rm, cp } from 'node:fs/promises';
 import path from 'node:path';
 import http from 'node:http';
-import { spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { audit } from '../src/audit.mjs';
 import { safeRead, checkTarget, fetchCapture } from '../src/io.mjs';
@@ -61,6 +61,34 @@ test('response size limit and timeout are bounded failures', async t => {
 });
 test('public network target requires explicit online flag', async () => {
   await assert.rejects(checkTarget('https://1.1.1.1'), /requires --online/);
+});
+test('URL-only CLI audit keeps an unrelated working directory out of its evidence', async t => {
+  const unrelated = await fixture(t), hits = [];
+  await writeFile(path.join(unrelated, 'package.json'), JSON.stringify({ dependencies: { astro: '*' } }));
+  await writeFile(path.join(unrelated, 'index.html'), '<title>Unrelated private website</title>');
+  const url = await server(t, (req, res) => {
+    hits.push(req.url);
+    if (req.url === '/selected/') {
+      res.setHeader('content-type', 'text/html');
+      res.end(html.replace('</main>', '<a href="/other/">Other page</a></main>'));
+    } else { res.statusCode = 404; res.end(); }
+  });
+  // Exercise online mode against a controlled server, without contacting a public site.
+  const result = await new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [path.resolve('src/cli.mjs'), 'audit', '--url', url, '--online', '--pages', '/selected/'], { cwd: unrelated });
+    let stdout = '', stderr = '';
+    child.stdout.on('data', x => { stdout += x; });
+    child.stderr.on('data', x => { stderr += x; });
+    child.on('error', reject);
+    child.on('close', code => resolve({ code, stdout, stderr }));
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const report = JSON.parse(result.stdout);
+  assert.equal(report.project.root, null);
+  assert.equal(report.project.htmlRoot, null);
+  assert.deepEqual(report.pages.map(p => p.url), [url + '/selected/']);
+  assert.ok(!result.stdout.includes('Unrelated private website'));
+  assert.ok(!hits.includes('/other/'));
 });
 test('safe file reader cannot follow symlinks out of the audit root', async t => {
   const root = await fixture(t), outside = await fixture(t);

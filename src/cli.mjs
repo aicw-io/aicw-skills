@@ -12,7 +12,7 @@ const help = `AICW Skills ${VERSION} (Node.js 22+)
 Based on ${BOOK_SOURCE.author}'s ${BOOK_SOURCE.title}
 ${BOOK_SOURCE.url}
 
-audit --root DIR [--html-root DIR] [--url http://localhost:PORT]
+audit [--root DIR] [--html-root DIR] [--url URL]
       [--public-origin https://site.tld] [--pages /,/pricing/]
       [--max-pages 200] [--output DIR] [--online]
       [--browser] [--browser-module RUNTIME_DIR] [--browser-executable FILE]
@@ -25,6 +25,7 @@ presence --origin https://site.tld --online
 Audit is read-only except for an explicitly requested report directory.
 Without --output, JSON goes to stdout. No command edits website sources.
 --public-origin maps URL identity without enabling any network request.
+Use --root for files or --url for HTTP. A URL-only audit needs no local project.
 --online permits the chosen external target. Crawl redirects stay on-origin.
 --browser-module is a directory containing node_modules/puppeteer-core.
 prepare-submission creates files only. There is no submit command.

@@ -14,10 +14,10 @@ The automatic audit leaves all checklist assessments as not-assessed and links a
 | C1.4 | 45 | Use conversational language and natural questions | Read the actual wording and answers; question marks alone are not evidence. |
 | C1.5 | 45 | Include relevant related terms and entities | Explain how the related concepts clarify the answer; do not count keywords. |
 | C1.6 | 45 | Organize useful questions and answers | Match headings to the reader’s questions and inspect the answers underneath. |
-| C1.7 | 45 | Review FAQ or PAA coverage | Consider both a general FAQ page and embedded FAQs; record useful questions or explain why none fit. |
+| C1.7 | 45 | Implement FAQ or PAA sections | Assess general and embedded FAQs; implement useful answers, or record a gap or explicit applicability decision. |
 | C2.1 | 64 | Choose primary and secondary schema types | Match types to real page entities and explain the selection. |
 | C2.2 | 64 | Implement JSON-LD through the existing source or CMS | Locate the generator and inspect its emitted HTML. |
-| C2.3 | 64 | Validate the emitted JSON-LD | Run local checks; record full vocabulary and provider validation separately. |
+| C2.3 | 64 | Validate the emitted JSON-LD | Record Schema Markup Validator or Google Rich Results Test evidence; local checks alone leave this item incomplete. |
 | C2.4 | 64 | Monitor indexing after structured-data changes | Record dated search-console or analytics observations, or mark evidence unavailable. |
 | C3.1 | 71 | Review and test robots.txt | Compare path rules with the intended crawler policy. |
 | C3.2 | 71 | Review and test the sitemap | Check XML, listed routes, scope, and generator output. |
@@ -36,7 +36,7 @@ The automatic audit leaves all checklist assessments as not-assessed and links a
 
 ## Record application decisions explicitly
 
-Checklist 1 recommends FAQs, and pages 42-44 discuss both general FAQ pages and embedded sections. Assess both. If no useful recurring questions fit a selected page, explain the decision rather than silently omitting the item or adding filler.
+Checklist 1 recommends FAQs, and pages 42-44 discuss both general FAQ pages and embedded sections. Assess both. If no useful recurring questions fit a selected page, explain the applicability decision. An absent FAQ is not a satisfied implementation item.
 
 Checklist 3 recommends SSR. Existing static HTML can already deliver the essential content in the initial response; this does not require migrating an HTML or Astro site to a server framework. Record the raw content evidence.
 

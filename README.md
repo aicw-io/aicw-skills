@@ -1,22 +1,24 @@
 # AICW Skills
 
-Six skills to help your coding agent audit and improve a local website for AI search.
+Six skills to help your coding agent audit and improve your website for AI search.
 Based on the [AI Search Engine Optimization Guide](https://aicw.io/books/ai-seo-guide/) by Eugene Mironichev.
 
-Works with HTML, Astro, and local WordPress projects. Requires Node.js 22 or newer.
+Use local files, a public URL, or a CMS connector available to your agent. Editing requires access to the site. Bundled audit scripts need Node.js 22+.
 
 ## Install
 
-In a terminal, open your website's folder and run:
+Run in your terminal:
 
 ```sh
 npx skills add aicw-io/aicw-skills
 ```
 
 Choose the skills you need, your coding agent, and where to install them.
-If you select `aicw-optimize`, open a new agent session in your website folder and ask:
+If you select `aicw-optimize`, open a new agent session and ask:
 
-> Use aicw-optimize to audit this website for AI search. Show the findings and proposed fixes before editing.
+> Use aicw-optimize to audit my website for AI search. Show the findings and proposed fixes before editing.
+
+Give the agent your website URL, project folder, or connected site. It asks when the target is unclear.
 
 See [agent setup](docs/compatibility.md) for Claude Code, Codex, Cursor, Copilot, and Gemini CLI.
 

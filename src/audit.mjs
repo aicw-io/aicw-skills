@@ -10,13 +10,13 @@ export async function audit(options = {}) {
   const maxPages = options.maxPages ?? 200;
   const project = await discover(options.root, options.htmlRoot);
   const target = options.url ? await checkTarget(options.url, options.online) : null;
-  if (!target && !project.htmlRoot) throw new Error('No rendered HTML found. Build the project, set --html-root, or supply a local --url. WordPress PHP files are not rendered HTML.');
+  if (!target && !project.htmlRoot) throw new Error('No rendered HTML found. Build the project, set --html-root, or supply a preview --url or a public --url with --online. WordPress PHP files are not rendered HTML.');
   const publicOrigin = options.publicOrigin ? new URL(options.publicOrigin).origin : null;
   const identity = publicOrigin ?? target?.origin ?? 'https://local-audit.invalid';
   const report = { version: 2, book: BOOK_SOURCE, toolVersion: VERSION, createdAt: new Date().toISOString(), project,
     mode: target ? 'http' : 'files', publicOrigin, target: target?.href ?? null,
     coverage: { maxPages, inspected: 0, truncated: false, sitemapLimit: 30 }, pages: [], findings: [],
-    limitations: ['Local checks do not establish production access, indexing, AI citations, or ranking.', 'Intent, factual accuracy, schema suitability, and complete Schema.org validation require agent review.'] };
+    limitations: ['File and preview checks do not establish production access. Public HTTP checks observe only the selected responses; they do not prove search indexing, AI citations, or ranking.', 'Intent, factual accuracy, and schema suitability require agent review. Complete Checklist 2 validation needs Schema Markup Validator or Google Rich Results Test evidence.'] };
   const add = (rule, status, severity, source, evidence, recommendation) => report.findings.push(finding(rule, 'technical', status, severity, source, evidence, recommendation));
   const allowedOrigins = new Set([identity, ...(target ? [target.origin] : [])]);
   const queue = [], queued = new Set(), inspected = new Map();
@@ -52,7 +52,7 @@ export async function audit(options = {}) {
       const result = checkRobots(robot.text, identity, []);
       for (const s of result.sitemaps) { const route = internalRoute(s); if (route) sitemaps.unshift(route); else add('sitemap.external', 'skipped', 'info', s, 'Sitemap is outside the configured origin.', 'Audit this sitemap separately if it belongs to this site.'); }
     } else if (robot.status === 404) add('robots.missing', 'review', 'info', '/robots.txt', 'No robots.txt found.', 'Absence gives no robots exclusion rules. It does not establish access or indexing.');
-    else add('robots.response', 'unknown', 'warning', '/robots.txt', `HTTP ${robot.status}; response is not usable robots text.`, 'Inspect the local route or server response.');
+    else add('robots.response', 'unknown', 'warning', '/robots.txt', `HTTP ${robot.status}; response is not usable robots text.`, 'Inspect the selected route or server response.');
   } catch (e) { add('robots.fetch', 'unknown', 'warning', '/robots.txt', e.message, 'Resolve the fetch failure and repeat the audit.'); }
   const seenSitemaps = new Set(), sitemapURLs = new Set();
   while (sitemaps.length && seenSitemaps.size < 30) {
@@ -64,7 +64,7 @@ export async function audit(options = {}) {
       if (data.status === 404) continue;
       if (data.status !== 200) { add('sitemap.response', 'unknown', 'warning', route, `HTTP ${data.status}`, 'Inspect the sitemap endpoint.'); continue; }
       const sitemap = parseSitemap(data.text);
-      add('sitemap.parse', 'pass', 'info', route, `${sitemap.entries.length} entries in ${sitemap.index ? 'index' : 'urlset'}.`, 'Compare listed URLs with the pages intended for discovery and check their local routes.');
+      add('sitemap.parse', 'pass', 'info', route, `${sitemap.entries.length} entries in ${sitemap.index ? 'index' : 'urlset'}.`, 'Compare listed URLs with the pages intended for discovery and check their routes on the selected target.');
       for (const entry of sitemap.entries) {
         const mapped = internalRoute(entry.url);
         if (!mapped) { add('sitemap.external', 'skipped', 'info', route, entry.url, 'Confirm the sitemap host matches the intended public origin.'); continue; }
@@ -92,7 +92,7 @@ export async function audit(options = {}) {
       page.route = route;
       if (target) {
         page.response = { status: result.status, finalURL: result.url, ttfbMs: result.ttfbMs, contentType: result.headers['content-type'], xRobotsTag: result.headers['x-robots-tag'] };
-        add('http.timing', 'review', 'info', page.source, `One response: ${result.ttfbMs} ms to headers; ${result.bytes} bytes.`, 'Local timings are diagnostic only. Use repeated production measurements for speed or Core Web Vitals conclusions.');
+        add('http.timing', 'review', 'info', page.source, `One response: ${result.ttfbMs} ms to headers; ${result.bytes} bytes.`, 'Single-request timings are diagnostic only. Use repeated production measurements for speed or Core Web Vitals conclusions.');
         if (result.headers['x-robots-tag']) add('http.robots', 'review', 'warning', page.source, result.headers['x-robots-tag'], 'Preserve intentional preview restrictions and inspect production configuration separately.');
       }
       report.pages.push(page);
@@ -101,15 +101,15 @@ export async function audit(options = {}) {
         const route = internalRoute(link.href, page.url);
         if (route && !/\.[a-z0-9]+$/i.test(new URL(route, identity).pathname.replace(/\.html?$/i, '')) && !/\/(wp-admin|wp-login\.php|logout|cart|checkout)(\/|$)/i.test(route)) enqueue(route);
       }
-    } catch (e) { inspected.set(route, null); add('page.fetch', 'unknown', 'warning', route, e.message, 'Resolve the local runtime or fetch failure.'); }
+    } catch (e) { inspected.set(route, null); add('page.fetch', 'unknown', 'warning', route, e.message, 'Resolve the runtime or fetch failure.'); }
   }
   if (inspected.size < queue.length) report.coverage.truncated = true;
   report.coverage.inspected = report.pages.length;
   report.coverage.discovered = queued.size;
   if (report.robots) report.findings.push(...checkRobots(report.robots.text, identity, report.pages.map(p => p.url)).findings);
-  if (!target) add('http.unavailable', 'skipped', 'info', project.htmlRoot, 'File audit has no HTTP headers or server status evidence.', 'Supply a local preview URL to inspect HTTP behavior.');
+  if (!target) add('http.unavailable', 'skipped', 'info', project.htmlRoot, 'File audit has no HTTP headers or server status evidence.', 'Supply the selected preview or public URL to inspect HTTP behavior.');
   if (options.browser) {
-    if (!target) add('rendering.unavailable', 'skipped', 'info', identity, 'Browser comparison requires a local preview URL.', 'Run the existing local preview and supply --url.');
+    if (!target) add('rendering.unavailable', 'skipped', 'info', identity, 'Browser comparison requires a preview or public URL.', 'Supply --url for the selected target, with --online for a public URL.');
     else {
       const { compareBrowser } = await import('./browser.mjs');
       report.findings.push(...await compareBrowser(report.pages, target, options));

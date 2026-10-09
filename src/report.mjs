@@ -4,7 +4,7 @@ import { BOOK_SOURCE } from './book.mjs';
 
 function md(value) { return String(value ?? '').replace(/[|]/g, '\\|').replace(/[\r\n]/g, ' ').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 export function markdownReport(report) {
-  const lines = ['# AICW local website audit', '',
+  const lines = ['# AICW website audit', '',
     `Based on ${BOOK_SOURCE.author}’s [${BOOK_SOURCE.title}](${BOOK_SOURCE.url}), full 84-page edition.`, '',
     `Inspected ${report.coverage.inspected} pages. Mode: ${report.mode}. Coverage truncated: ${report.coverage.truncated ? 'yes' : 'no'}.`, '',
     'A pass applies only to its stated check. Review items need judgment. Unknown and skipped checks are not passes.', '',

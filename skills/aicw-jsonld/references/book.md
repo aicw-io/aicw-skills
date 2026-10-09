@@ -17,7 +17,7 @@ The book retains its original copyright. This package contains implementation gu
 | Chapter 4: LLM knowledge | 28-31 | Separate model-memory answers from live web retrieval |
 | Chapter 5: Knowledge sources | 32-37 | Archive and source observations, with limits on training claims |
 | Chapter 6 and Checklist 1 | 38-45 | Intent, specific situations, natural questions, related concepts, and useful FAQs |
-| Chapter 7: Crawl and rendering | 46-52 | Robots rules, raw HTML, local runtime, and sitemap checks |
+| Chapter 7: Crawl and rendering | 46-52 | Robots rules, response HTML, rendering, and sitemap checks |
 | Chapter 7 and Checklist 2 | 53-64 | Actual JSON-LD graphs, type selection, visible facts, validation, and media |
 | Chapter 7: Optional files and submissions | 64-70 | Optional llms.txt and current engine submission workflows |
 | Checklist 3 | 71 | Technical checks and an explicit statement of coverage |
@@ -28,7 +28,7 @@ The book retains its original copyright. This package contains implementation gu
 
 Use the book as the sole source of optimization strategy. Every recommendation must name a relevant checklist item from [the review worksheet](book-checklist.md), or a specific chapter and PDF page for a recommendation outside the checklists. Do not import extra tactics from AICW Visibility merely because its code can check them. Its reused code supplies evidence for book-backed work.
 
-The CLI, parser, local build commands, and CMS instructions are implementation support. The book does not specify their algorithms or thresholds. Automated findings label their relationship as `book-application`, `implementation-check`, or `current-correction`; none establish improved AI visibility. Unlisted strategies are outside this companion's scope.
+Target selection, local files, public URL access, connectors, CLI commands, parsers, and edit verification are implementation support. They are not instructions or optimization strategies attributed to the author. Use only the access the user selects and the agent actually has. The book does not specify their algorithms or thresholds. Automated findings label their relationship as `book-application`, `implementation-check`, or `current-correction`; none establish improved AI visibility. Unlisted strategies are outside this companion's scope.
 
 Some printed examples need corrections to remain executable or accurate. Read [implementation notes](implementation-notes.md) when applying those examples. State both the book's original advice and the current exception. These notes update implementation, not the optimization scope. Do not silently rewrite the book's position or attribute provider documentation to its author.
 

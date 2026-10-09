@@ -1,15 +1,17 @@
 # Agent compatibility
 
-The six skills use the [Agent Skills format](https://agentskills.io/specification). Full operation requires local file access, command execution, and Node.js 22+. A local browser and WordPress runtime are needed only for those checks. If a prerequisite is missing, the agent can review source and must identify the checks it could not run.
+The six skills use the [Agent Skills format](https://agentskills.io/specification). Use the agent’s available file, web, or CMS connector access for the selected website. Bundled scripts require command execution and Node.js 22+. Browser comparisons need a browser runtime. No particular framework or connector is required for content review. State which checks the available access cannot support.
 
-## Install into your website project
+## Install for your agent
+
+Use the README’s installer and choose project or personal installation. Project installation works in a local workspace even when the website itself is remote.
 
 Copy any complete `skills/aicw-*` folder into your client's skill directory, or use the installer from the README. Keep the scripts, references, and license files together. Install one skill or all six; each works independently.
 
 | Client | Project skill directory | How to start |
 | --- | --- | --- |
-| Claude Code | `.claude/skills/` | `/aicw-jsonld Audit this local website` |
-| Codex | `.agents/skills/` | `$aicw-jsonld Audit this local website` |
+| Claude Code | `.claude/skills/` | `/aicw-jsonld Audit my selected website` |
+| Codex | `.agents/skills/` | `$aicw-jsonld Audit my selected website` |
 | Cursor | `.agents/skills/` or `.cursor/skills/` | Ask to use `aicw-jsonld` |
 | GitHub Copilot | `.github/skills/` or `.agents/skills/` | Ask to use `aicw-jsonld` in an agent client |
 | Gemini CLI | `.gemini/skills/` or `.agents/skills/` | Ask to use `aicw-jsonld` |
@@ -54,11 +56,11 @@ Static review, standard-format validation, and successful standalone scripts do 
 
 See [validation](validation.md) for exact versions and recorded results. Standalone scripts are tested separately from agent behavior. A documented installation path does not establish that a client has completed our behavioral tests. Cursor, Copilot, and Gemini CLI remain unverified until their actual sessions are exercised.
 
-A chat product that cannot read your local project or execute commands can use the book guidance, but cannot perform the complete local audit and fix loop. The standalone scripts and format checks passed hosted CI on Linux, macOS, and Windows with Node.js 22 and 24. These platform checks are separate from live agent behavior; see the recorded run in [validation](validation.md).
+A client with web or connector tools can review accessible content without local files. Editing depends on its actual write capabilities. The skills include no CMS connector; each third-party connector needs its own setup and permissions. Connector instructions received a static review only, not live integration testing. The standalone scripts and format checks passed hosted CI on Linux, macOS, and Windows with Node.js 22 and 24. These platform checks are separate from live agent behavior; see the recorded run in [validation](validation.md).
 
 ## Common setup problems
 
-Run `node --version` in the same environment as your agent. Node.js 22+ must be on its command path. Browser checks can use `--browser-executable` and `--browser-module` when automatic detection is insufficient. A WordPress source checkout needs a working local preview; PHP files alone are not rendered pages.
+Run `node --version` in the same environment as your agent. For bundled scripts, Node.js 22+ must be on its command path. Browser checks can use `--browser-executable` and `--browser-module` when automatic detection is insufficient. A WordPress source checkout needs a running preview or public URL for output checks; PHP files and CMS records alone are not rendered pages.
 
 The helper lives inside the installed skill folder. Resolve that folder first and run the helper by absolute path, with a separate `--root` for the website. Do not search for the helper inside the website source. Paths with spaces must be quoted.
 

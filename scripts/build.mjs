@@ -16,7 +16,7 @@ const worksheet = [
   '| --- | --- | --- | --- |',
   ...BOOK_CHECKLIST.map(x => `| ${x.id} | ${x.page} | ${x.principle} | ${x.review} |`), '',
   '## Record application decisions explicitly', '',
-  'Checklist 1 recommends FAQs, and pages 42-44 discuss both general FAQ pages and embedded sections. Assess both. If no useful recurring questions fit a selected page, explain the decision rather than silently omitting the item or adding filler.', '',
+  'Checklist 1 recommends FAQs, and pages 42-44 discuss both general FAQ pages and embedded sections. Assess both. If no useful recurring questions fit a selected page, explain the applicability decision. An absent FAQ is not a satisfied implementation item.', '',
   'Checklist 3 recommends SSR. Existing static HTML can already deliver the essential content in the initial response; this does not require migrating an HTML or Astro site to a server framework. Record the raw content evidence.', '',
   'Checklist 3 suggests frequency and priority tags on large sites. Keep the item visible, but label the current Google exception from [implementation notes](implementation-notes.md). Do not silently replace that item with a different SEO rule.', '',
   'Chapter 7 also discusses media JSON-LD and C2PA (pages 61-63), optional llms.txt (pages 64-66), and engine submissions (pages 66-70). Chapter 5 discusses Common Crawl (pages 32-37). Apply these when relevant, cite those pages, and mark unavailable evidence explicitly.', '',
@@ -75,7 +75,7 @@ for (const name of skills) {
     'aicw-monitor': 'Track AI search observations and compare reports',
     'aicw-submit': 'Guide Google, Bing, and Brave search submissions',
   }[name];
-  await writeFile(path.join(skill, 'agents/openai.yaml'), `interface:\n  display_name: ${JSON.stringify(title)}\n  short_description: ${JSON.stringify(short)}\n  default_prompt: ${JSON.stringify(`Use $${name} for the current website project.`)}\n`);
+  await writeFile(path.join(skill, 'agents/openai.yaml'), `interface:\n  display_name: ${JSON.stringify(title)}\n  short_description: ${JSON.stringify(short)}\n  default_prompt: ${JSON.stringify(`Use $${name} for my selected website. Ask which website if it is unclear.`)}\n`);
 }
 } finally { await rm(staging, { recursive: true, force: true }); }
 console.log(`Built ${skills.length} portable skills with ${licenses.length} dependency license files each.`);

@@ -1,6 +1,6 @@
 # Review what the reader is trying to do
 
-Book basis: Chapter 3, pages 16-27, and Chapter 6, pages 38-45. Use all seven Checklist 1 items in [the review worksheet](book-checklist.md).
+Book basis: Chapter 3, pages 16-27, and Chapter 6, pages 38-45. Use all seven Checklist 1 items in [the review worksheet](book-checklist.md). The brief and evidence fields below are review methods for applying those items, not extra book requirements.
 
 ## Build an intent brief
 
@@ -22,11 +22,11 @@ For example, a cloud storage pricing page serves a plan-selection task. Storage 
 
 ## Assess the actual answers
 
-Make sure that the title signals the task and the opening answers the immediate question. Inspect whether headings follow the reader's decisions or steps. Keep related terminology and named entities consistent. Explain unfamiliar terms when the audience needs them.
+Make sure that the title signals the task (C1.2) and that the text answers it (C1.1). Inspect the opening as evidence; the book sets no mandatory answer position. Inspect whether headings follow the reader's decisions or steps. Keep related terminology and named entities consistent. Explain unfamiliar terms when the audience needs them.
 
 Use specific situations and natural questions where they fit. Address predictable follow-up questions without diluting the page's purpose. A comparison benefits from explicit criteria and tradeoffs. A tutorial benefits from prerequisites, steps, expected results, and recovery from common failures.
 
-Distinguish a useful short answer from an unsupported claim. Keep sources, authorship, examples, and dates where they support trust. Do not manufacture expertise, research, numerical claims, or customer evidence.
+Distinguish a useful short answer from an unsupported claim. Chapter 8, page 77 emphasizes human expertise and accuracy. Keep sources, authorship, examples, and dates where they support that review. Do not manufacture expertise, research, numerical claims, or customer evidence.
 
 ## Edit and reassess
 

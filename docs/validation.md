@@ -1,6 +1,24 @@
 # Validation record
 
-Validated on 2026-10-09 with Node.js 22.22.3. Core users need Node.js 22 or newer. The development suite uses the exact dependencies in `package-lock.json`.
+Validated on 2026-10-09 with Node.js 22.22.3. Bundled scripts need Node.js 22 or newer. The development suite uses the exact dependencies in `package-lock.json`.
+
+## Version 0.3 website access and book review
+
+Re-read the full 84-page source PDF and visually checked its cover and all four checklist pages. Its SHA-256 still matches [the recorded edition](../resources/book.md). Reviewed all six skill entrypoints, the shared references, and the audit rule mapping against those pages.
+
+| Scope | Book evidence | Review outcome |
+| --- | --- | --- |
+| Content | Chapter 6, pages 38-45; C1.1-C1.7 | Retained all seven items. Restored FAQ implementation as the checklist action; reviewing an absent FAQ cannot count as implementation. |
+| JSON-LD | Chapter 7, pages 53-64; C2.1-C2.4 | Made the named external validators explicit. Local syntax checks alone cannot complete C2.3. |
+| Technical access | Chapter 7, pages 46-71; C3.1-C3.8 | Retained all eight items, including the printed SSR and sitemap-tag advice, with application notes and dated provider corrections. |
+| Monitoring | Chapter 8, pages 77-79; C4.1-C4.6 | Retained all six items. Query mix and worksheet fields are implementation methods, not requirements attributed to the author. |
+| Other topics | Chapter 5, pages 32-37; Chapter 7, pages 61-70 | Kept Common Crawl, media, optional llms.txt, and engine submissions within the book’s scope. |
+
+Removed an implied mandatory answer position and fixed optimization order from the instructions. Target selection, connector access, backups, and verification remain clearly labeled execution guidance. They do not add SEO tactics. Official documentation was rechecked for the existing sitemap, Indexing API, FAQ feature, IndexNow, and media-property corrections. No unrelated strategies from those sources were added.
+
+All 36 core tests, four integration scenarios, six Agent Skills reference validations, build consistency, and portable packaging passed for version 0.3. New regression tests run the URL-only CLI from an unrelated project and verify that it reads only the selected routes. Submission tests verify that an unknown sitemap remains unset and that mismatched hosts and missing or example origins are rejected.
+
+A static instruction walkthrough covered missing website targets, ambiguous connected sites, a supplied public URL, connector-only access without Node.js, draft-only CMS edits, and a local site without a public address. These were reviews of instructions, not live agent or connector sessions. The prior live agent results below were not repeated for version 0.3. Claude Code was not launched.
 
 ## Version 0.2 name update
 
@@ -10,7 +28,7 @@ The [version 0.2 CI run](https://github.com/aicw-io/aicw-skills/actions/runs/379
 
 ## Automated checks
 
-The suite contains 34 tests. It covers object, array, nested, and multi-type JSON-LD; malformed blocks; connected and unresolved references; conflicting definitions; media field corrections; FAQ visibility; hidden headings; attribute order; and decorative image alternatives.
+The suite contains 36 tests. It covers object, array, nested, and multi-type JSON-LD; malformed blocks; connected and unresolved references; conflicting definitions; media field corrections; FAQ visibility; hidden headings; attribute order; and decorative image alternatives.
 
 It also covers robots rule precedence, empty Disallow, sitemap indexes, malformed XML, local origin mapping, bounded requests, blocked cross-origin redirects, missing HTTP evidence, symlink containment, explicit page selection, source-only WordPress detection, relocated skill execution, and missing browser dependencies.
 

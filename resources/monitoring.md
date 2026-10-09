@@ -1,10 +1,10 @@
 # Measure AI search outcomes
 
-Book basis: Chapters 3-5 and Chapter 8, pages 77-79.
+Book basis: Chapters 3-5 and Chapter 8, pages 77-79. The recording fields and comparison methods below implement Checklist 4; the book does not prescribe a fixed query mix or experiment format.
 
 ## Establish a baseline
 
-Choose queries from real tasks: learning, comparing, buying, navigating, or solving a problem. Include a mix of branded and unbranded queries. Keep the exact query text stable when comparing observations.
+Choose queries from real tasks: learning, comparing, buying, navigating, or solving a problem. Choose branded or unbranded queries according to the measurement question. Keep the exact query text stable when comparing observations.
 
 Record the engine, time, region, language, model or mode when available, and whether the answer used web search. Record the answer, mentioned brands, cited URLs, and supporting screenshots or exported results. Treat a login or access failure as missing data.
 
@@ -21,11 +21,11 @@ Use separate measures:
 
 Common Crawl presence does not prove that a current model trained on that page. Absence from one index does not prove absence from all datasets. A search result query is a partial observation, not a complete index audit.
 
-## Use local evidence first
+## Use available evidence
 
 Compare before and after audit JSON with the bundled `compare` command. Its output identifies findings that changed. It does not prove causality or account for every change in audit coverage.
 
-For analytics exports or AI mention reports, inspect columns and timestamps before analysis. Retain dates, sample sizes, and collection conditions. Do not assume that a specific AI tool's export format is installed or stable.
+For supplied exports, connected analytics, or AI mention reports, match the website property and inspect fields and timestamps before analysis. Retain dates, sample sizes, and collection conditions. Do not assume that a specific AI tool's export format is installed or stable.
 
 If no observations exist, produce a collection worksheet and query list. Do not invent baseline numbers. A useful worksheet contains: query, intent, engine, mode, locale, observed_at, brand_mentioned, cited_urls, evidence_path, and notes.
 

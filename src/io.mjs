@@ -29,7 +29,7 @@ export async function fetchCapture(input, { origin, timeout = 10000, retries = 1
       let url = new URL(input), response;
       for (let hop = 0; hop < 6; hop++) {
         if (url.origin !== origin) throw new Error(`Cross-origin request blocked: ${url.origin}`);
-        response = await fetcher(url, { redirect: 'manual', signal: controller.signal, headers: { 'User-Agent': `AICW-Skills/${VERSION} (local website audit)` } });
+        response = await fetcher(url, { redirect: 'manual', signal: controller.signal, headers: { 'User-Agent': `AICW-Skills/${VERSION} (website audit)` } });
         if ([301, 302, 303, 307, 308].includes(response.status)) {
           await response.body?.cancel();
           if (!response.headers.get('location')) throw new Error('Redirect has no Location header.');
