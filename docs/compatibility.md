@@ -40,7 +40,7 @@ Static review, standard-format validation, and successful standalone scripts do 
 
 See [validation](validation.md) for exact versions and recorded results. Standalone scripts are tested separately from agent behavior. A documented installation path does not establish that a client has completed our behavioral tests. Cursor, Copilot, and Gemini CLI remain unverified until their actual sessions are exercised.
 
-A chat product that cannot read your local project or execute commands can use the book guidance, but cannot perform the complete local audit and fix loop. macOS tests do not establish Linux or Windows results; the CI matrix runs those platforms after the repository is connected to GitHub.
+A chat product that cannot read your local project or execute commands can use the book guidance, but cannot perform the complete local audit and fix loop. The standalone scripts and format checks passed hosted CI on Linux, macOS, and Windows with Node.js 22 and 24. These platform checks are separate from live agent behavior; see the recorded run in [validation](validation.md).
 
 ## Common setup problems
 
