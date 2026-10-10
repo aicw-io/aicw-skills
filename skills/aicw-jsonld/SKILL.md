@@ -1,7 +1,7 @@
 ---
 name: aicw-jsonld
 description: Inspect, validate, and repair application/ld+json blocks in website pages. Use for JSON-LD syntax, nested graphs, entity types, identifiers, references, duplicate generators, media fields, and agreement with visible content.
-license: AGPL-3.0-only
+license: MIT
 compatibility: Use available file, web, or CMS connector access for the selected website. Bundled scripts require command access and Node.js 22+. Browser checks need a browser runtime. Connectors are not included.
 metadata:
   author: aicw-io

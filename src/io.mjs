@@ -1,6 +1,6 @@
 import { VERSION } from './version.mjs';
 // Fetch retry/capture behavior adapted from AICW Visibility.
-// Copyright (c) 2026 AICW. AGPL-3.0-only. See NOTICE.md.
+// Copyright (c) 2026 AICW. MIT. See NOTICE.md.
 import { lookup } from 'node:dns/promises';
 import { readFile, readdir, realpath, stat } from 'node:fs/promises';
 import path from 'node:path';

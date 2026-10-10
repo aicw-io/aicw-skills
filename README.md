@@ -37,4 +37,4 @@ The skills follow the book's [25 checklist items](resources/book-checklist.md). 
 
 [Usage examples](docs/book-companion.md) · [Audit commands](resources/tools.md) · [Development and testing](docs/releasing.md)
 
-Code: [AGPL-3.0-only](LICENSE). See [attribution](NOTICE.md). The book retains its original copyright.
+Code: [MIT](LICENSE). See [attribution](NOTICE.md). The book retains its original copyright.

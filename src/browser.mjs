@@ -1,5 +1,5 @@
 // Raw versus rendered capture adapted from AICW Visibility's rendering checks.
-// Copyright (c) 2026 AICW. AGPL-3.0-only.
+// Copyright (c) 2026 AICW. MIT.
 import { exists } from './io.mjs';
 import { finding } from './checks.mjs';
 import { inspectHTML, compact } from './html.mjs';

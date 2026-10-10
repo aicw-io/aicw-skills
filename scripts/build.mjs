@@ -24,7 +24,7 @@ const worksheet = [
 await writeFile(path.join(root, 'resources/book-checklist.md'), worksheet);
 const result = await build({ absWorkingDir: root, entryPoints: ['src/cli.mjs'], bundle: true, write: false,
   format: 'esm', platform: 'node', target: 'node22', minify: false, legalComments: 'inline',
-  external: ['puppeteer-core'], banner: { js: '#!/usr/bin/env node\n// Generated from src/. AGPL-3.0-only. See LICENSE, NOTICE.md, and licenses/.\nimport { createRequire as _createRequire } from "node:module"; const require = _createRequire(import.meta.url);' },
+  external: ['puppeteer-core'], banner: { js: '#!/usr/bin/env node\n// Generated from src/. MIT. See LICENSE, NOTICE.md, and licenses/.\nimport { createRequire as _createRequire } from "node:module"; const require = _createRequire(import.meta.url);' },
 });
 const licenses = [];
 const seen = new Set();

@@ -1,7 +1,7 @@
 ---
 name: aicw-submit
 description: Prepare and guide manual website submissions to Google Search Console, Bing Webmaster Tools and IndexNow, and Brave Search. Use for sitemap submission, changed-URL notifications, ownership prerequisites, submission records.
-license: AGPL-3.0-only
+license: MIT
 compatibility: Use available file, web, or CMS connector access for the selected website. Bundled scripts require command access and Node.js 22+. Browser checks need a browser runtime. Connectors are not included.
 metadata:
   author: aicw-io

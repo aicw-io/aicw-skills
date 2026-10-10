@@ -1,7 +1,7 @@
 ---
 name: aicw-optimize
 description: Audit and improve a selected website for AI search using the AICW book. Use for a whole-site optimization across content intent, JSON-LD, crawler access, rendering, and measurement. Works through available local files, public URLs, or CMS connectors.
-license: AGPL-3.0-only
+license: MIT
 compatibility: Use available file, web, or CMS connector access for the selected website. Bundled scripts require command access and Node.js 22+. Browser checks need a browser runtime. Connectors are not included.
 metadata:
   author: aicw-io

@@ -4,7 +4,7 @@
   "private": true,
   "description": "Website optimization skills based on the AI Search Engine Optimization Guide by Eugene Mironichev",
   "type": "module",
-  "license": "AGPL-3.0-only",
+  "license": "MIT",
   "engines": {
     "node": ">=22"
   },

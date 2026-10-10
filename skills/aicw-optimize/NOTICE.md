@@ -1,10 +1,10 @@
 # Attribution and licenses
 
-Copyright (c) 2026 AICW contributors. Toolkit source and skill instructions are licensed under AGPL-3.0-only. See LICENSE.
+Copyright (c) 2026 AICW contributors. Toolkit source and skill instructions are licensed under the MIT License. See LICENSE.
 
-This toolkit adapts audit behavior from [AICW Visibility](https://github.com/aicw-io/aicw-visibility), copyright (c) 2026-present AICW, licensed AGPL-3.0-only.
+This toolkit adapts audit behavior from [AICW Visibility](https://github.com/aicw-io/aicw-visibility), copyright (c) 2026-present AICW, now licensed under the [MIT License](https://github.com/aicw-io/aicw-visibility/blob/85822cd51c8fd6266d5f7ebde1ee8c1de61c1d71/LICENSE).
 
-The reviewed upstream commit was `1d7780754b125be5a8f8cf3ce88ee499f3f80351`. Adapted areas include the native-fetch retry and page-capture approach, raw versus rendered text comparison, bot role classification, and page-level checks.
+The original adaptation was reviewed against upstream commit `1d7780754b125be5a8f8cf3ce88ee499f3f80351`. Adapted areas include the native-fetch retry and page-capture approach, raw versus rendered text comparison, bot role classification, and page-level checks.
 
 Upstream source locations:
 

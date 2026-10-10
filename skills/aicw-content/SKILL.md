@@ -1,7 +1,7 @@
 ---
 name: aicw-content
 description: Audit and improve page text for user intent and AI search understanding. Use for unanswered questions, weak task coverage, titles, headings, semantic context, conversational queries, FAQs, and evidence-based rewrites on the selected website.
-license: AGPL-3.0-only
+license: MIT
 compatibility: Use available file, web, or CMS connector access for the selected website. Bundled scripts require command access and Node.js 22+. Browser checks need a browser runtime. Connectors are not included.
 metadata:
   author: aicw-io

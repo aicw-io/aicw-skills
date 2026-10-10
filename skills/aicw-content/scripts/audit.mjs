@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Generated from src/. AGPL-3.0-only. See LICENSE, NOTICE.md, and licenses/.
+// Generated from src/. MIT. See LICENSE, NOTICE.md, and licenses/.
 import { createRequire as _createRequire } from "node:module"; const require = _createRequire(import.meta.url);
 var __create = Object.create;
 var __defProp = Object.defineProperty;
@@ -44,7 +44,7 @@ var init_package = __esm({
       private: true,
       description: "Website optimization skills based on the AI Search Engine Optimization Guide by Eugene Mironichev",
       type: "module",
-      license: "AGPL-3.0-only",
+      license: "MIT",
       engines: {
         node: ">=22"
       },

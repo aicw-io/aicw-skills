@@ -1,7 +1,7 @@
 ---
 name: aicw-monitor
 description: Build and compare an AI search measurement baseline using audit reports, available analytics, and recorded search observations. Use to distinguish brand mentions, citations, indexing, referral traffic, conversions, and content-refresh experiments.
-license: AGPL-3.0-only
+license: MIT
 compatibility: Use available file, web, or CMS connector access for the selected website. Bundled scripts require command access and Node.js 22+. Browser checks need a browser runtime. Connectors are not included.
 metadata:
   author: aicw-io
