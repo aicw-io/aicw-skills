@@ -24,14 +24,12 @@ See [agent setup](docs/compatibility.md) for Claude Code, Codex, Cursor, Copilot
 
 ## Included skills
 
-| Skill | What it does |
-| --- | --- |
-| `aicw-optimize` | Audit content, JSON-LD, and technical access, apply relevant fixes, and verify them against the book’s checklists. |
-| `aicw-content` | Match content to reader intent, fill missing answers, and improve headings, factual support, FAQs, and next steps. |
-| `aicw-jsonld` | Check JSON-LD syntax, entity links, and consistency with visible content, then validate repairs. |
-| `aicw-audit` | Inspect robots.txt, sitemaps, indexing directives, server responses, rendering, and load speed for crawler access problems. |
-| `aicw-monitor` | Track brand mentions, citations, indexing, referral traffic, and conversions. Compare available reports and search observations before and after changes. |
-| `aicw-submit` | Guide manual Google, Bing/IndexNow, and Brave submissions, including sitemap URLs, ownership verification, and submission records. |
+- `aicw-optimize`: Audit content, JSON-LD, and technical access, apply relevant fixes, and verify them against the book’s checklists.
+- `aicw-content`: Match content to reader intent, fill missing answers, and improve headings, factual support, FAQs, and next steps.
+- `aicw-jsonld`: Check JSON-LD syntax, entity links, and consistency with visible content, then validate repairs.
+- `aicw-audit`: Inspect robots.txt, sitemaps, indexing directives, server responses, rendering, and load speed for crawler access problems.
+- `aicw-monitor`: Track brand mentions, citations, indexing, referral traffic, and conversions. Compare available reports and search observations before and after changes.
+- `aicw-submit`: Guide manual Google, Bing/IndexNow, and Brave submissions, including sitemap URLs, ownership verification, and submission records.
 
 The skills follow the book's [25 checklist items](resources/book-checklist.md). Each skill and audit report credits the book.
 
