@@ -26,12 +26,12 @@ See [agent setup](docs/compatibility.md) for Claude Code, Codex, Cursor, Copilot
 
 | Skill | What it does |
 | --- | --- |
-| `aicw-optimize` | Runs the full audit and optimization workflow |
-| `aicw-content` | Finds missing answers to readers' questions |
-| `aicw-jsonld` | Inspects page JSON-LD and compares it with visible content |
-| `aicw-audit` | Audits crawl access, sitemaps, rendering, and speed |
-| `aicw-monitor` | Compares reports and tracks AI search observations |
-| `aicw-submit` | Guides manual Google, Bing/IndexNow, and Brave submissions |
+| `aicw-optimize` | Audit content, JSON-LD, and technical access, apply relevant fixes, and verify them against the book’s checklists. |
+| `aicw-content` | Match content to reader intent, fill missing answers, and improve headings, factual support, FAQs, and next steps. |
+| `aicw-jsonld` | Check JSON-LD syntax, entity links, and consistency with visible content, then validate repairs. |
+| `aicw-audit` | Inspect robots.txt, sitemaps, indexing directives, server responses, rendering, and load speed for crawler access problems. |
+| `aicw-monitor` | Track brand mentions, citations, indexing, referral traffic, and conversions. Compare available reports and search observations before and after changes. |
+| `aicw-submit` | Guide manual Google, Bing/IndexNow, and Brave submissions, including sitemap URLs, ownership verification, and submission records. |
 
 The skills follow the book's [25 checklist items](resources/book-checklist.md). Each skill and audit report credits the book.
 
